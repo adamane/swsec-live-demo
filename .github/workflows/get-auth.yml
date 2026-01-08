@@ -6,7 +6,7 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: get-secret
     steps:
       - name: Import Secrets
