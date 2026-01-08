@@ -1,0 +1,37 @@
+name: app1-workflow1-vault-secrets
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '*.md'
+jobs:
+  get-secret:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: self-hosted
+    name: get-secret
+    steps:
+      - name: Import Secrets
+        id: import-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: ${{ env.VAULT_ADDR }}
+          namespace: root
+          path: jwt-github-actions
+          role: auth.jwt.app1.workflow1
+          method: jwt
+          exportToken: true
+          secrets: |
+              kv/test username | USERNAME ;
+      - name: Use a secret
+        run: echo "The secret username is: $USERNAME"
+        env:
+          INPUT_USERNAME: ${{ env.USERNAME }}
+
+      - name: Revoke Vault Token
+        if: always()
+        run: |
+          curl -X POST -sv --fail-with-body -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
+            ${{ env.VAULT_ADDR }}/v1/auth/token/revoke-self
