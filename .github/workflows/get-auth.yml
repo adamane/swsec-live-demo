@@ -23,7 +23,7 @@ jobs:
           secrets: |
               kv/test username | USERNAME;
       - name: hi
-        run: "echo '${{steps.import-secrets.outputs.USERNAME}}'' 
+        run: "echo '${{steps.import-secrets.outputs.USERNAME}}'"
 
       - name: Revoke Vault Token
         if: always()
