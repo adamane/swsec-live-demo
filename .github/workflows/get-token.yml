@@ -1,11 +1,5 @@
 name: inspect-jwt
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'terraform/**'
-      - '*.md'
   workflow_dispatch:
   
 jobs:

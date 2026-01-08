@@ -1,10 +1,6 @@
 name: app1-workflow1-vault-secrets
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '*.md'
+  workflow_dispatch:
 jobs:
   get-secret:
     permissions:
@@ -24,7 +20,9 @@ jobs:
           method: jwt
           exportToken: true
           secrets: |
-              kv/test username | USERNAME ;
+              kv/test username | USERNAME;
+      - name:
+        run: env
       - name: Use a secret
         run: echo "The secret username is: $USERNAME"
         env:
