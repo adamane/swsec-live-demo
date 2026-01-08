@@ -1,6 +1,6 @@
 name: app1-workflow1-vault-secrets
 on:
-  workflow_dispatch:
+  workflow_dispatch
 jobs:
   get-secret:
     permissions:
@@ -23,10 +23,6 @@ jobs:
               kv/test username | USERNAME;
       - name:
         run: env
-      - name: Use a secret
-        run: echo "The secret username is: $USERNAME"
-        env:
-          INPUT_USERNAME: ${{ env.USERNAME }}
 
       - name: Revoke Vault Token
         if: always()
