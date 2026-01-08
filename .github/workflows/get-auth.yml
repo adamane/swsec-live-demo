@@ -13,7 +13,7 @@ jobs:
         id: import-secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: ${{ env.VAULT_ADDR }}
+          url: ${{ vars.VAULT_ADDR }}
           namespace: root
           path: jwt-github-actions
           role: auth.jwt.app1.workflow1
@@ -21,7 +21,7 @@ jobs:
           exportToken: true
           secrets: |
               kv/test username | USERNAME;
-      - name:
+      - name: hi
         run: env
 
       - name: Revoke Vault Token
