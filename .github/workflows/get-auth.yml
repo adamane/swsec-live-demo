@@ -18,11 +18,12 @@ jobs:
           path: jwt-github-actions
           role: auth.jwt.app1.workflow1
           method: jwt
+          jwtGithubAudience: sigstore
           exportToken: true
           secrets: |
               kv/test username | USERNAME;
       - name: hi
-        run: echo $USERNAME 
+        run: "echo '${{steps.import-secrets.outputs.USERNAME}}'' 
 
       - name: Revoke Vault Token
         if: always()
