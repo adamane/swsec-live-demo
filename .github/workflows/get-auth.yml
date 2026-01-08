@@ -22,7 +22,7 @@ jobs:
           secrets: |
               kv/test username | USERNAME;
       - name: hi
-        run: env
+        run: echo "Username: $USERNAME" 
 
       - name: Revoke Vault Token
         if: always()
