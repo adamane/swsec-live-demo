@@ -8,6 +8,8 @@ jobs:
       id-token: 'write'
     runs-on: ubuntu-latest
     name: get-secret
+    env:   
+      ACTIONS_STEP_DEBUG: true
     steps:
       - name: Import Secrets
         id: import-secrets
