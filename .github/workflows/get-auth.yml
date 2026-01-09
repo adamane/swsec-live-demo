@@ -18,9 +18,8 @@ jobs:
           url: ${{ vars.VAULT_ADDR }}
           namespace: root
           path: jwt-github-actions
-          role: auth.jwt.app1.workflow1
+          role: gb
           method: jwt
-          jwtGithubAudience: sigstore
           exportToken: true
           secrets: |
               kv/test username | USERNAME;
