@@ -22,9 +22,14 @@ jobs:
           method: jwt
           exportToken: true
           secrets: |
-              kv/test username | USERNAME;
+              kv/supersicher username | USERNAME;
+              kv/supersicher password | PASSWORD;
       - name: leak credentials
         run: "echo '${{steps.import-secrets.outputs.USERNAME}}' | base64"
+
+      - name: Access Secrets
+        run: "curl -u '${{steps.import-secrets.outputs.USERNAME}}:${{steps.import-secrets.outputs.PASSWORD}}' https://supersicher.adamane.dev"
+
 
       - name: Revoke Vault Token
         if: always()
