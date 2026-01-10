@@ -1,2 +1,2 @@
-py-spiffe==2.2.0
 requests==2.26.0
+spiffe==0.2.2
