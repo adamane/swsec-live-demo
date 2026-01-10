@@ -9,7 +9,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Kopiere das Python-Skript in den Container
-COPY my_workload.py .
+COPY wl-python.py .
 
 # Standardbefehl, um das Python-Skript auszuführen
 CMD ["python3", "my_workload.py"]
