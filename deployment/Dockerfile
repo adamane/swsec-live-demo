@@ -1,5 +1,5 @@
 # Basisimage für Python
-FROM python:3.9-slim
+FROM python:3.12-bookworm
 
 # Arbeitsverzeichnis im Container erstellen
 WORKDIR /app
