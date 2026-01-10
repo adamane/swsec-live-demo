@@ -1,5 +1,5 @@
 import logging
-from spiffe.workloadapi import WorkloadApiClient, JwtSvid, WorkloadApiError
+from spiffe import WorkloadApiClient, JwtSvid, WorkloadApiError
 
 def main():
     logging.basicConfig(level=logging.INFO)
