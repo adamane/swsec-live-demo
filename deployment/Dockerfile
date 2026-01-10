@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY wl-python.py .
 
 # Standardbefehl, um das Python-Skript auszuführen
-CMD ["python3", "my_workload.py"]
+CMD ["python3", "wl-python.py"]
