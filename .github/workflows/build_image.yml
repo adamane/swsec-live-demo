@@ -1,6 +1,7 @@
 name: Build and Push Docker Image
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -33,13 +34,8 @@ jobs:
     - name: Build Docker Image
       run: |
         IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
+        TAG=latest
         
-        # Bestimme den Tag für das Image
-        if [[ "${{ github.event_name }}" == "push" && "${{ github.ref_type }}" == "branch" ]]; then
-          TAG=latestt
-        elif [[ "${{ github.event_name }}" == "push" && "${{ github.ref_type }}" == "tag" ]]; then
-          TAG=${{ github.ref_name }}
-        fi
 
         echo "Building Docker Image ${IMAGE_NAME}:${TAG}"
         
@@ -50,6 +46,7 @@ jobs:
     - name: Push Docker Image
       run: |
         IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
+        TAG=latest
         docker push ${IMAGE_NAME}:${TAG}
 
     # Optional: Cleanup lokaler Docker-Images
