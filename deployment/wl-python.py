@@ -1,5 +1,5 @@
 import logging
-from spiffe import WorkloadApiClient, JwtSvid, WorkloadApiError
+from spiffe import WorkloadApiClient, JwtSvid
 
 def main():
     logging.basicConfig(level=logging.INFO)
@@ -29,9 +29,6 @@ def main():
             logging.info(f"JWT-Token: {jwt_svid.token_string()}")
         else:
             logging.error("Kein gültiges JWT-SVID abgerufen.")
-
-    except WorkloadApiError as e:
-        logging.error(f"Fehler beim Abrufen des JWT-SVIDs: {e}")
 
     finally:
         client.close()
